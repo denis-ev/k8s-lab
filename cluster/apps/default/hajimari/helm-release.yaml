@@ -25,6 +25,7 @@ spec:
   values:
     hajimari:
       defaultEnable: false
+      defaultSearchProvider: "DuckDuckGo"
       namespaceSelector:
         matchNames:
           - default

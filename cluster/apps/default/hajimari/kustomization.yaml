@@ -4,10 +4,3 @@ kind: Kustomization
 resources:
   - config-pvc.yaml
   - helm-release.yaml
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: hajimari
-data:
-  defaultSearchProvider: "DuckDuckGo"
