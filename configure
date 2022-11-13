@@ -35,6 +35,7 @@ main() {
         verify_age
         verify_git_repository
         verify_cloudflare
+        verify_proxmox
         verify_success
     else
         # generate sops configuration file
@@ -63,11 +64,16 @@ main() {
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/cert-manager/issuers/secret.sops.yaml"
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/cloudflare-ddns/secret.sops.yaml"
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/external-dns/secret.sops.yaml"
-        # generate terraform secrets
-        envsubst < "${PROJECT_DIR}/tmpl/terraform/secret.sops.yaml" \
+        # generate cloudflare secrets
+        envsubst < "${PROJECT_DIR}/tmpl/terraform/cloudflare/secret.sops.yaml" \
             > "${PROJECT_DIR}/provision/terraform/cloudflare/secret.sops.yaml"
-        # encrypt terraform secrets
+        # encrypt cloudflare secrets
         sops --encrypt --in-place "${PROJECT_DIR}/provision/terraform/cloudflare/secret.sops.yaml"
+        # generate proxmox secrets
+        envsubst < "${PROJECT_DIR}/tmpl/terraform/proxmox/secret.sops.yaml" \
+            > "${PROJECT_DIR}/provision/terraform/proxmox/secret.sops.yaml"
+        # encrypt proxmox secrets
+        sops --encrypt --in-place "${PROJECT_DIR}/provision/terraform/proxmox/secret.sops.yaml"
         # generate ansible settings
         envsubst < "${PROJECT_DIR}/tmpl/ansible/kube-vip.yml" \
             > "${PROJECT_DIR}/provision/ansible/inventory/group_vars/kubernetes/kube-vip.yml"
@@ -338,6 +344,13 @@ verify_cloudflare() {
         _log "ERROR" "Unable to get Cloudflare Account and Zone information ${errors}"
         exit 1
     fi
+}
+
+verify_proxmox() {
+    _has_envar "BOOTSTRAP_PM_API_URL"
+    _has_envar "BOOTSTRAP_PM_API_TOKEN_ID"
+    _has_envar "BOOTSTRAP_PM_API_TOKEN_SECRET"
+    _has_envar "BOOTSTRAP_SSH_KEY"
 }
 
 verify_ansible_hosts() {
