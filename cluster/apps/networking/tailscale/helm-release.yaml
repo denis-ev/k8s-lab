@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: subnet-router
+  name: tailscale-subnet-router
   namespace: networking
 spec:
   interval: 15m
