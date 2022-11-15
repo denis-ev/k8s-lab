@@ -44,4 +44,4 @@ spec:
     remediation:
       retries: 5
   values:
-    replicas: 1
+    replicas: 0
