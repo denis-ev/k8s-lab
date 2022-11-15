@@ -36,7 +36,6 @@ spec:
         limits:
           cpu: "0.5"
           memory: "512Mi"
-          ephemeral-storage: "1Gi"
   install:
     createNamespace: true
     remediation:
