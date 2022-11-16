@@ -9,4 +9,4 @@ resources:
   - metallb
   - k8s-gateway
   - cert-manager
-  - tailscale-subnet-router
+  - subnet-router
