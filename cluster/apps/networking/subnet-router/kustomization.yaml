@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - subnet.yaml
   - role.yaml
-  - rolbinding.yaml
+  - rolebinding.yaml
   - sa.yaml
   - secret.sops.yaml
