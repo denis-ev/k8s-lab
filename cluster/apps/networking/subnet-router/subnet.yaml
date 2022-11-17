@@ -10,7 +10,6 @@ metadata:
   labels:
     app: tailscale
 spec:
-  serviceAccountName: tailscale
   containers:
     - name: tailscale
       imagePullPolicy: Always
