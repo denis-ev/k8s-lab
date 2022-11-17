@@ -6,3 +6,4 @@ resources:
   - daemon-set
   - kube-vip
   - metrics-server
+  - subnet-router
