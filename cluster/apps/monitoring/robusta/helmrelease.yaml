@@ -20,14 +20,14 @@ spec:
     globalConfig:
       signing_key: ${globalConfig_signing_key}
       account_id: ${globalConfig_account_id}
-      sinksConfig:
-        - robusta_sink:
-            name: robusta_ui_sink
-            token: ${globalConfig_robusta_sink_token}
-          enablePrometheusStack: true
-          enablePlatformPlaybooks: true
-          runner:
-            sendAdditionalTelemetry: false
-          rsa:
-            prv: ${globalConfig_rsa_prv}
-            pub: ${globalConfig_rsa_pub}
+    sinksConfig:
+      - robusta_sink:
+        name: robusta_ui_sink
+        token: ${globalConfig_robusta_sink_token}
+    enablePrometheusStack: true
+    enablePlatformPlaybooks: true
+    runner:
+      sendAdditionalTelemetry: false
+    rsa:
+      prv: ${globalConfig_rsa_prv}
+      pub: ${globalConfig_rsa_pub}
