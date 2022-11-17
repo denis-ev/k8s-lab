@@ -356,6 +356,10 @@ verify_proxmox() {
     _has_envar "BOOTSTRAP_SSH_KEY"
 }
 
+verify_nextdns() {
+    _has_envar "BOOTSTRAP_NEXTDNS_WEBADDRESS"
+}
+
 verify_ansible_hosts() {
     local node_id=
     local node_addr=

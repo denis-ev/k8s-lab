@@ -1,0 +1,55 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: resolve-host-patcher
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      name: resolve-host-patcher
+  template:
+    metadata:
+      labels:
+        name: resolve-host-patcher
+    spec:
+      containers:
+        - image: bash
+          name: resolve-host-patcher
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+          command:
+            - bash
+            - -c
+            - |
+              #!/bin/bash
+              set -x -e
+
+              # We're relying on coredns from now on...
+              function patch(){
+                echo "$(date -u) - Beginning to patch /etc/resolv.conf on the node"
+                unlink /var/run/hostpaths/etc/resolv.conf || true # read-only docker-desktop shenanigans
+                cat /etc/resolv.conf > /var/run/hostpaths/etc/resolv.conf
+                echo "$(date -u) - Done patching /etc/resolv.conf"
+              }
+              while true; do
+                patch
+                echo "$(date -u) - Sleeping for 30 min"
+                sleep 30m
+              done
+              exit 0 # I would like to exit 0 and only run on boot...
+
+          volumeMounts:
+            - mountPath: /var/run/hostpaths/etc/
+              name: etc
+
+      volumes:
+        - name: etc
+          hostPath:
+            path: /etc
+        - name: run
+          hostPath:
+            path: /run

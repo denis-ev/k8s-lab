@@ -1,0 +1,33 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: robusta
+  namespace: monitoring
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: robusta
+      version: 0.9.9
+      sourceRef:
+        kind: HelmRepository
+        name: robusta
+        namespace: flux-system
+  values:
+    clusterName: k8s-lab
+    isSmallCluster: true
+    globalConfig:
+      signing_key: ${globalConfig_signing_key}
+      account_id: ${globalConfig_account_id}
+      sinksConfig:
+        - robusta_sink:
+            name: robusta_ui_sink
+            token: ${globalConfig_robusta_sink_token}
+          enablePrometheusStack: true
+          enablePlatformPlaybooks: true
+          runner:
+            sendAdditionalTelemetry: false
+          rsa:
+            prv: ${globalConfig_rsa_prv}
+            pub: ${globalConfig_rsa_pub}

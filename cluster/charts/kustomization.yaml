@@ -12,6 +12,8 @@ resources:
   - jetstack-charts.yaml
   - kubereboot-charts.yaml
   - k8s-gateway-charts.yaml
+  - kubereboot-charts.yaml
   - metallb-charts.yaml
   - metrics-server-charts.yaml
+  - robusta-charts.yaml
   - stakater-charts.yaml
