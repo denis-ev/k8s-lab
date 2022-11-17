@@ -6,4 +6,3 @@ resources:
   - daemon-set
   - kube-vip
   - metrics-server
-  - kube-vip
