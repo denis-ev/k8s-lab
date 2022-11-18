@@ -30,7 +30,11 @@ update_ipv4=$(curl -s -X PUT \
     -H "Content-Type: application/json" \
     --data "{\"id\":\"${zone_id}\",\"type\":\"A\",\"proxied\":true,\"name\":\"${CLOUDFLARE_RECORD_NAME}\",\"content\":\"${current_ipv4}\"}" \
 )
+update_nextdns=$(curl -s -X PUT \
+    "${NEXTDNS_WEBADDRESS}" \
+)
 if [[ "$(echo "$update_ipv4" | jq --raw-output '.success')" == "true" ]]; then
+    $update_nextdns
     printf "%s - Success - IP Address '%s' has been updated" "$(date -u)" "${current_ipv4}"
     exit 0
 else
