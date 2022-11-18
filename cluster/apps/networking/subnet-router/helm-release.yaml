@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: tailscale-subnet-router
-      version: 1.0.0
+      version: 1.0.1
       sourceRef:
         kind: HelmRepository
         name: denis-ev
@@ -23,13 +23,12 @@ spec:
     remediation:
       retries: 5
   values:
-    image:
-      tag: latest
     tailscale:
-      secretName: tailscale-auth
-      secretKey: TS_AUTH_KEY
-    routes:
-      - "10.1.5.0/24"
+      auth:
+        secretName: tailscale-auth
+        secretKey: TS_AUTH_KEY
+      routes:
+        - "10.1.5.0/24"
     resources:
       limits:
         cpu: "1"
