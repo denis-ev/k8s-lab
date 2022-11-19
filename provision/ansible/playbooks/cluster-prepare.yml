@@ -74,6 +74,11 @@
           ansible.builtin.systemd:
             service: fstrim.timer
             enabled: true
+        - name: System Configuration (1) | Enable iscsid
+          ansible.builtin.systemd:
+            service: iscsid.service
+            state: started
+            enabled: true
     - name: System Configuration (2)
       block:
         - name: System Configuration (2) | Enable kernel modules now
