@@ -15,3 +15,8 @@ creation_rules:
     key_groups:
       - age:
           - ${BOOTSTRAP_AGE_PUBLIC_KEY}
+  - path_regex: provision/kubeconfig.ya?ml
+    encrypted_regex: "^(data|certificate-authority-data|server|client-certificate-data|client-key-data)$"
+    key_groups:
+      - age:
+          - ${BOOTSTRAP_AGE_PUBLIC_KEY}

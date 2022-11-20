@@ -220,7 +220,7 @@ In order to use Terraform and `cert-manager` with the Cloudflare DNS challenge y
 
 ### ⛵ Installing k3s with Ansible
 
-📍 Here we will be running a Ansible Playbook to install [k3s](https://k3s.io/) with [this](https://galaxy.ansible.com/xanmanning/k3s) wonderful k3s Ansible galaxy role. After completion, Ansible will drop a `kubeconfig` in `./provision/kubeconfig` for use with interacting with your cluster with `kubectl`.
+📍 Here we will be running a Ansible Playbook to install [k3s](https://k3s.io/) with [this](https://galaxy.ansible.com/xanmanning/k3s) wonderful k3s Ansible galaxy role. After completion, Ansible will drop a `kubeconfig.yaml` in `./provision/kubeconfig.yaml` for use with interacting with your cluster with `kubectl`.
 
 ☢️ If you run into problems, you can run `task ansible:nuke` to destroy the k3s cluster and start over.
 
@@ -417,7 +417,7 @@ Flux is pull-based by design meaning it will periodically check your git reposit
 1. Webhook URL - Your webhook receiver will be deployed on `https://flux-receiver.${BOOTSTRAP_CLOUDFLARE_DOMAIN}/hook/:hookId`. In order to find out your hook id you can run the following command:
 
     ```sh
-    kubectl -n flux-system get receiver/github-receiver --kubeconfig=./provision/kubeconfig
+    kubectl -n flux-system get receiver/github-receiver --kubeconfig=./provision/kubeconfig.yaml
     # NAME              AGE    READY   STATUS
     # github-receiver   6h8m   True    Receiver initialized with URL: /hook/12ebd1e363c641dc3c2e430ecf3cee2b3c7a5ac9e1234506f6f5f3ce1230e123
     ```
