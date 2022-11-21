@@ -23,7 +23,7 @@ rules:
     resources: ["nodes"]
     verbs: ["get", "list", "watch"]
   - apiGroups: ["storage.k8s.io"]
-    resources: ["volumeattachments"]
+    resources: ["*"]
     verbs: ["get", "list", "watch", "update", "patch"]
 ---
 kind: ClusterRoleBinding
@@ -76,7 +76,7 @@ spec:
           operator: "Exists"
       containers:
         - name: csi-attacher
-          image: quay.io/k8scsi/csi-attacher:v2.2.0
+          image: quay.io/k8scsi/csi-attacher:canary
           args:
             - "--v=4"
             - "--csi-address=$(ADDRESS)"

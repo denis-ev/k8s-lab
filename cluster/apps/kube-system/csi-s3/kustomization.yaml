@@ -5,6 +5,6 @@ resources:
   - attacher.yaml
   - csi-s3.yaml
   - provisioner.yaml
-  - s3-test.yaml
+  # - s3-test.yaml
   - secret.sops.yaml
   - storage-class.yaml
