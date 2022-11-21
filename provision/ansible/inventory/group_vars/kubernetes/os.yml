@@ -20,6 +20,9 @@ packages:
   - nvme-cli
   - socat
   - python3-libselinux
+  # Start S3 Dependencies
+  - s3fs-fuse
+  # End S3 Dependencies
   # Start Longhorn Dependencies
   - nfs-utils
   - iscsi-initiator-utils
