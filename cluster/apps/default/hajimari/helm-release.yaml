@@ -29,6 +29,7 @@ spec:
       namespaceSelector:
         matchNames:
           - default
+          - monitoring
           - networking
       name: "you"
       showGlobalBookmarks: true
