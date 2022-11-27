@@ -6,6 +6,6 @@ metadata:
   namespace: flux-system
 data:
   TIMEZONE: Australia/Perth
-  METALLB_LB_RANGE: 10.1.5.70-10.1.5.80
+  METALLB_LB_RANGE: 10.1.5.70-10.1.5.100
   METALLB_K8S_GATEWAY_ADDR: 10.1.5.70
   METALLB_INGRESS_ADDR: 10.1.5.71
