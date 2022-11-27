@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - csi-s3
-  - daemon-set
+  # - daemon-set
   - kube-vip
+  - kyverno
   - metrics-server
