@@ -27,6 +27,7 @@ spec:
         sidecarsNamespace: monitoring
       ingress:
         enabled: true
+        ingressClassName: "nginx"
         hostname: thanos-query.${SECRET_DOMAIN}
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
