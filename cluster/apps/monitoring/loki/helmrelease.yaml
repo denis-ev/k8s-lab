@@ -1,0 +1,65 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: loki
+  namespace: monitoring
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: loki
+      version: 3.3.4
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: flux-system
+  values:
+    global:
+      clusterDomain: ${SECRET_DOMAIN}
+    loki:
+      auth_enabled: false
+      storage:
+        bucketNames:
+          chunks: loki_chunks
+          ruler: loki_ruler
+          admin: loki_admin
+        type: s3
+        s3:
+          # s3: null
+          endpoint: https://s3.labcloud.cc
+          region: ""
+          secretAccessKey: h+xu+TzkItxlbHKSLUqBvBPaHRJZlEvoYU0kGlXC
+          accessKeyId: ZZC9BG7OYVI9DU9OBJF3
+          s3ForcePathStyle: true
+          insecure: false
+      # storage:
+      #   bucketNames:
+      #     chunks: loki
+      #     ruler: loki
+      #     admin: loki
+      #   s3:
+      #     s3ForcePathStyle: true
+      #     insecure: true
+    gateway:
+      replicas: 3
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          hajimari.io/enable: "true"
+        hosts:
+          - host: &host "loki.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+            secretName: loki-tls
+    monitoring:
+      selfMonitoring:
+        enabled: true
+        # grafanaAgent:
+        #   installOperator: false
