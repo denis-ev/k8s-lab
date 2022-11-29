@@ -5,7 +5,7 @@ resources:
   - namespace.yaml
   - csi-s3
   # - daemon-set
-  - descheduler
+  # - descheduler
   - kube-vip
   # - kyverno
   - metrics-server
