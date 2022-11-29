@@ -1,7 +1,7 @@
 ---
 ignore: |
   *.sops.*
-  gotk-components.yaml
+  flux-installation.yaml
 extends: default
 rules:
   truthy:
