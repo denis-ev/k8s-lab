@@ -42,7 +42,7 @@ spec:
       #     s3ForcePathStyle: true
       #     insecure: true
     gateway:
-      replicas: 3
+      replicas: 1
       ingress:
         enabled: true
         ingressClassName: nginx
