@@ -11,9 +11,13 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
+      - id: fix-byte-order-marker
       - id: check-merge-conflict
       - id: end-of-file-fixer
       - id: mixed-line-ending
+      - id: check-added-large-files
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
   - repo: https://github.com/Lucas-C/pre-commit-hooks
@@ -44,3 +48,27 @@ repos:
     rev: 34.40.2
     hooks:
       - id: renovate-config-validator
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 3.0.0
+    hooks:
+      - id: shellcheck
+        args: [--severity=error]
+  - repo: https://github.com/ansible-community/ansible-lint
+    rev: v6.9.0
+    hooks:
+      - id: ansible-lint
+        files: ^ansible/
+        always_run: false
+        entry: bash -c "cd ansible/ && exec ansible-lint --force-color"
+  - repo: https://github.com/zricethezav/gitleaks
+    rev: v8.15.1
+    hooks:
+      - id: gitleaks
+  - repo: local
+    hooks:
+      - id: kustomize
+        name: Kustomize
+        files: ^cluster/
+        entry: ./kustomize.sh
+        language: system
+        pass_filenames: false
