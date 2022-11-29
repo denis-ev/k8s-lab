@@ -62,5 +62,5 @@ spec:
     monitoring:
       selfMonitoring:
         enabled: true
-        # grafanaAgent:
-        #   installOperator: false
+        grafanaAgent:
+          installOperator: false
