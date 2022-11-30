@@ -10,6 +10,11 @@ creation_rules:
     key_groups:
       - age:
           - age1qctq7hfr3jv6vgx73288uukgcc5ug72sv4cuk5zt74kv4hta7qqs7xx0lw
+  - path_regex: terraform/cloudflare/.*\.sops\.ya?ml
+    unencrypted_regex: "^(kind)$"
+    key_groups:
+      - age:
+          - age1qctq7hfr3jv6vgx73288uukgcc5ug72sv4cuk5zt74kv4hta7qqs7xx0lw
   - path_regex: provision/kubeconfig.ya?ml
     encrypted_regex: "^(data|certificate-authority-data|server|client-certificate-data|client-key-data)$"
     key_groups:
