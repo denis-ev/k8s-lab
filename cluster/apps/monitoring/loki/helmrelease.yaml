@@ -27,10 +27,10 @@ spec:
         type: s3
         s3:
           # s3: null
-          endpoint: https://s3.labcloud.cc
+          endpoint: ${endpoint}
           region: ""
-          secretAccessKey: h+xu+TzkItxlbHKSLUqBvBPaHRJZlEvoYU0kGlXC
-          accessKeyId: ZZC9BG7OYVI9DU9OBJF3
+          secretAccessKey: ${secretAccessKey}
+          accessKeyId: ${accessKeyID}
           s3ForcePathStyle: true
           insecure: false
       # storage:
